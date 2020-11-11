@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/three-point-lighting/static/css/main.52a8a6ab.chunk.css",
+    "main.js": "/three-point-lighting/static/js/main.210daeef.chunk.js",
+    "main.js.map": "/three-point-lighting/static/js/main.210daeef.chunk.js.map",
+    "runtime-main.js": "/three-point-lighting/static/js/runtime-main.425a4ae9.js",
+    "runtime-main.js.map": "/three-point-lighting/static/js/runtime-main.425a4ae9.js.map",
+    "static/js/2.30c575c2.chunk.js": "/three-point-lighting/static/js/2.30c575c2.chunk.js",
+    "static/js/2.30c575c2.chunk.js.map": "/three-point-lighting/static/js/2.30c575c2.chunk.js.map",
+    "static/js/3.0dc9a66a.chunk.js": "/three-point-lighting/static/js/3.0dc9a66a.chunk.js",
+    "static/js/3.0dc9a66a.chunk.js.map": "/three-point-lighting/static/js/3.0dc9a66a.chunk.js.map",
+    "index.html": "/three-point-lighting/index.html",
+    "static/css/main.52a8a6ab.chunk.css.map": "/three-point-lighting/static/css/main.52a8a6ab.chunk.css.map",
+    "static/js/2.30c575c2.chunk.js.LICENSE.txt": "/three-point-lighting/static/js/2.30c575c2.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.425a4ae9.js",
+    "static/js/2.30c575c2.chunk.js",
+    "static/css/main.52a8a6ab.chunk.css",
+    "static/js/main.210daeef.chunk.js"
+  ]
+}
