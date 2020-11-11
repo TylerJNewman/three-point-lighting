@@ -3,24 +3,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Grid from "@material-ui/core/Grid";
 import Toolbar from "@material-ui/core/Toolbar";
 import Slider from "@material-ui/core/Slider";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles({
-  root: {
-    width: 250,
-  },
-  input: {
-    width: 42,
-  },
-});
-
-function valueLabelFormat(value) {
-  const [coefficient, exponent] = value
-    .toExponential()
-    .split("e")
-    .map((item) => Number(item));
-  return `${Math.round(coefficient)}e^${exponent}`;
-}
 
 const Header = (props) => {
   const {
