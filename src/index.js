@@ -5,6 +5,15 @@ import { Canvas } from "react-three-fiber";
 import reportWebVitals from "./reportWebVitals";
 import Header from "./components/Header";
 
+const config = {
+  initialKLB: 5.6,
+  initialFLB: 2.6,
+  initialRLB: 54,
+  initX: 0,
+  initY: -1,
+  initZ: -5,
+};
+
 // Lights
 function KeyLight({ brightness, color }) {
   return (
@@ -48,9 +57,9 @@ function RimLight({ brightness, color }) {
   );
 }
 
-function Sphere() {
+function Sphere({ x = 0, y = 0, z = 0 }) {
   return (
-    <mesh visible userData={{ test: "hello" }} position={[0, 0, 0]} castShadow>
+    <mesh userData={{ test: "hello" }} position={[x, y, z]} castShadow>
       <sphereGeometry attach="geometry" args={[1, 16, 16]} />
       <meshStandardMaterial
         attach="material"
@@ -64,17 +73,17 @@ function Sphere() {
 }
 
 // Geometry
-function GroundPlane() {
+function GroundPlane({ x = 5, y = 0, z = 0 }) {
   return (
-    <mesh receiveShadow rotation={[5, 0, 0]} position={[0, -1, 0]}>
+    <mesh receiveShadow rotation={[x, y, z]} position={[0, -1, 0]}>
       <planeBufferGeometry attach="geometry" args={[500, 500]} />
       <meshStandardMaterial attach="material" color="white" />
     </mesh>
   );
 }
-function BackDrop() {
+function BackDrop({ x = 0, y = -1, z = -5 }) {
   return (
-    <mesh receiveShadow position={[0, -1, -5]}>
+    <mesh receiveShadow position={[x, y, z]}>
       <planeBufferGeometry attach="geometry" args={[500, 500]} />
       <meshStandardMaterial attach="material" color="white" />
     </mesh>
@@ -82,8 +91,7 @@ function BackDrop() {
 }
 
 function App() {
-  const config = { initialKLB: 5.6, initialFLB: 2.6, initialRLB: 54 };
-  const { initialKLB, initialFLB, initialRLB } = config;
+  const { initialKLB, initialFLB, initialRLB, initX, initY, initZ } = config;
 
   const [keyLightBrightness, setKeyLightBrightness] = React.useState(
     initialKLB
@@ -94,20 +102,41 @@ function App() {
   const [rimLightBrightness, setRimLightBrightness] = React.useState(
     initialRLB
   );
+
+  const [x, setX] = React.useState(initX);
+  const [y, setY] = React.useState(initY);
+  const [z, setZ] = React.useState(initZ);
+
+  const onSliderChange = (setStateFn) => (event, value) => {
+    setStateFn(value);
+  };
+
+  console.log("z", z);
   return (
     <>
       <Header
-        key={1}
-        setKeyLightBrightness={setKeyLightBrightness}
-        setFillLightBrightness={setFillLightBrightness}
-        setRimLightBrightness={setRimLightBrightness}
-        initialKLB={initialKLB}
-        initialFLB={initialFLB}
-        initialRLB={initialRLB}
+        onSliderChange={[
+          setKeyLightBrightness,
+          setFillLightBrightness,
+          setRimLightBrightness,
+        ].map((setStateFn) => onSliderChange(setStateFn))}
+        values={[keyLightBrightness, fillLightBrightness, rimLightBrightness]}
+        maxValues={[initialKLB * 2, initialFLB * 2, initialRLB * 1.5]}
+        minValues={[0, 0, 0]}
+        steps={[0.1, 0.1, 0.1]}
       />
-      <Canvas key={2}>
+      <Header
+        onSliderChange={[setX, setY, setZ].map((setStateFn) =>
+          onSliderChange(setStateFn)
+        )}
+        values={[x, y, z]}
+        maxValues={[5, 5, 0]}
+        minValues={[-5, -5, -10]}
+        steps={[0.1, 0.1, 0.1]}
+      />
+      <Canvas>
         <Sphere />
-        <BackDrop />
+        <BackDrop x={x} y={y} z={z} />
         <GroundPlane />
         <KeyLight brightness={keyLightBrightness} color="#ffbdf4" />
         <FillLight brightness={fillLightBrightness} color="#bdefff" />

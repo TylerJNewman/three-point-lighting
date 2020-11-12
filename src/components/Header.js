@@ -5,43 +5,36 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Slider from "@material-ui/core/Slider";
 
 const Header = (props) => {
-  const {
-    setKeyLightBrightness,
-    setFillLightBrightness,
-    setRimLightBrightness,
-    initialKLB,
-    initialFLB,
-    initialRLB,
-  } = props;
+  const { values, onSliderChange, maxValues, minValues, steps, reset } = props;
   return (
     <AppBar position="static" color="default">
       <Toolbar>
         <Grid container spacing={2} alignItems="center">
           <Grid item xs>
             <Slider
-              defaultValue={initialKLB}
-              min={0}
-              max={initialKLB * 2}
-              step={0.1}
-              onChange={(event, newValue) => setKeyLightBrightness(newValue)}
+              min={minValues[0]}
+              max={maxValues[0]}
+              step={steps[0]}
+              value={values[0]}
+              onChange={onSliderChange[0]}
             />
           </Grid>
           <Grid item xs>
             <Slider
-              defaultValue={initialFLB}
-              min={0}
-              max={initialFLB * 2}
-              step={0.1}
-              onChange={(event, newValue) => setFillLightBrightness(newValue)}
+              min={minValues[1]}
+              max={maxValues[1]}
+              step={steps[1]}
+              value={values[1]}
+              onChange={onSliderChange[1]}
             />
           </Grid>
           <Grid item xs>
             <Slider
-              defaultValue={initialRLB}
-              min={0}
-              max={initialRLB * 1.5}
-              step={0.1}
-              onChange={(event, newValue) => setRimLightBrightness(newValue)}
+              min={minValues[2]}
+              max={maxValues[2]}
+              step={steps[2]}
+              value={values[2]}
+              onChange={onSliderChange[2]}
             />
           </Grid>
         </Grid>
